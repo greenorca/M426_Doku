@@ -1,13 +1,7 @@
 <?php
-
 require_once './controller/DbController.php';
 require_once './model/Mark.php';
 require_once './model/Modul.php';
-
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 /**
  * Class MarksController
@@ -15,41 +9,41 @@ error_reporting(E_ALL);
  */
 class MarksController
 {
-    private $userid;
+    private $userId;
     private $cnx;
     private $markArray = [];
 
     /**
      * MarksController constructor.
-     * Sets the classvariable userid and cnx.
+     * Sets the classvariable userId and cnx.
      */
-    function __construct()
+    public function __construct()
     {
         $dbcontroller = new DbController();
         $this->cnx = $dbcontroller->getDbconn();
-        $this->setUserid();
+        $this->setUserId();
     }
 
     /**
-     * Sets the classvariable if the sessionvar userid is set and an integer
+     * Sets the classvariable if the sessionvar userId is set and an integer
      */
-    function setUserid()
+    public function setUserId()
     {
         if (isset($_SESSION['userId']) && is_int($_SESSION['userId'])) {
-            $this->userid = $_SESSION['userId'];
-        }else{
+            $this->userId = $_SESSION['userId'];
+        } else {
             //Manual allocation for debugging.
-            //$this->userid = 2;
+            //$this->userId = 2;
         }
     }
 
     /**
      * This function will fetch all Marks for the current user.
      */
-    function getMarks()
+    public function getMarks()
     {
         $stmnt = $this->cnx->prepare('SELECT * FROM user_modul WHERE fk_user_id = ?');
-        $stmnt->bind_param("s", $this->userid);
+        $stmnt->bind_param("s", $this->userId);
         $stmnt->execute();
         $result = $stmnt->get_result();
         while ($obj = $result->fetch_object()) {
@@ -59,17 +53,16 @@ class MarksController
             array_push($this->markArray, new Mark($obj->mj, $obj->percentage_mj, 'MJ', $obj->fk_modul_id));
         }
         return $this->markArray;
-
     }
 
-    function getModulDetails($fk_id_modul){
+    public function getModulDetails($fk_id_modul)
+    {
         $stmnt = $this->cnx->prepare('SELECT * FROM modul WHERE modul_id = ?');
         $stmnt->bind_param("s", $fk_id_modul);
         $stmnt->execute();
         $result = $stmnt->get_result();
-        while($obj = $result->fetch_object()){
+        while ($obj = $result->fetch_object()) {
             return new Modul($obj->modul_id, $obj->modul_name, $obj->modul_number);
         }
     }
-
 }

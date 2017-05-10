@@ -1,8 +1,7 @@
-<html style="color:#e7e7e7">
 <?php
-	
-   	require_once 'controller/CreateAcctController.php';
-    	$controller = new CreateAcctController();
+    $page = "admin";
+    require_once 'controller/CreateAcctController.php';
+        $controller = new CreateAcctController();
 
         /**
         *
@@ -27,77 +26,37 @@
             }
         }
     ?>
+<!DOCTYPE html>
+<html>
 <head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<!-- End Latest compiled and minified CSS -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>
-			Admin
-		</title>
-		<link rel="stylesheet" href="view.template/css/style.css">
-		<link rel="stylesheet" href="view.template/css/bootstrap.css">
-		<script  src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-		
-		<!-- Navigationsleiste -->
-		<div class="topnav" id="myTopnav" align="center">
-			<h1 style="color:#c1b497;font-family:luxury;">S I E R R A</h1>
-			<a href="index.php">HOME</a>
-			<a href="noten.php">NOTEN</a>
-			<a href="todolist.php"> TO-DO LIST </a>
-			<a href="login.php"> LOGIN </a>
-			<a class="active" href="admin.php"> ADMIN </a>
+		<?php require_once 'view.template/head.php';?>
+    <title>Admin panel - Sierra</title>
+</head>
+	<body>
+    <?php require_once 'view.template/nav.php'; ?>
+		<div class="container topSpacer">
+			<h1>Benutzer erfassen</h1>
+				<form class="userForm" action="?" method="POST">
+					<input class="form-control" name="name" id="name" type="text" placeholder="Name">
+					<input class="form-control" name="firstname" id="firstname" type="text" placeholder="Vorname">
+					<input class="form-control" name="email" id="email" type="email" placeholder="E-Mail">
+					<input class="form-control" name="passwd" id="passwd" type="password" placeholder="Passwort">
+          <div class="form-group">
+            <select class="form-control" name="group" id="group">
+  						<?php
+                      $groups = $controller->retreiveGroups();
+                      foreach ($groups as $group) {
+                          echo "<option value='".$group."'>".$group."</option>";
+                      }
+                      ?>
+  					</select>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="isAdmin" id="isAdmin" value="true"> Ist der Nutzer Admin?</label>
+          </div>
+					<input class="btn btn-success btnSubmit" type="submit" value="Benutzer erstellen">
+				</form>
 		</div>
-	</head>
-	<body style="background-color:#c4c4c4">
-		<div class="container">
-			<div style="margin: 100px"></div>
-			<div class="notification" id="pause"></div>
-		</div>
-		<div id="border">
-			<center>
-			<h1 class="whitefont">Benutzer erfassen</h1>
-				<form action="?" method="POST">
-					<label for="#name">Name</label>
-					<input name="name" id="name" type="text" placeholder="Name">
-					<label for="#firstname">Vorname</label>
-					<input name="firstname" id="firstname" type="text" placeholder="Vorname">
-					<label for="#email">E-Mail</label>
-					<input name="email" id="email" type="email" placeholder="E-Mail">
-					<label for="#passwd">Passwort</label>
-					<input name="passwd" id="passwd" type="password" placeholder="Passwort">
-					<label for="#group">Gruppe</label>
-					<select name="group" id="group">
-						<?php
-					$groups = $controller->retreiveGroups();
-					foreach ($groups as $group) {
-					    echo "<option value='".$group."'>".$group."</option>";
-					}
-				    ?>
-					</select>
-					<label for="#isAdmin">Ist der Nutzer Admin?</label>
-					<input type="checkbox" name="isAdmin" id="isAdmin" value="true">
-					<input type="submit" value="Benutzer erstellen">
-				</form>	
-			</center>
-			</br>
-		</div>
-		
-		
-		
-		
-		<!--JavaScript Start-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="view.template/js/bootstrap.js"></script>
-		<!--JavaScript Ende-->
+    <?php require_once 'view.template/footer.php';?>
 	</body>
-	
-	<div class="footer">
-		
-    <div class="footer_contents"><button id="btnchat" type="button" class="btn btn-primary">Chat</button></div>
-
 </html>

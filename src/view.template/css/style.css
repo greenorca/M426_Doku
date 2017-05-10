@@ -1,86 +1,86 @@
-@font-face {
-	font-family: 'luxury';
-	src: url('./ufontscomepisodei.eot');
-	src: local('ufontscomepisodei'), url('./ufontscomepisodei.woff') format('woff'), url('./ufontscomepisodei.ttf') format('truetype');
-}
-body{
-	color:#c4c4c4;
-}
-footer{
-	
-}
-form { 
-	margin: 0 auto; 
+body {
+  //color: #c4c4c4;
+  color: black;
+  background-color: #c4c4c4
 }
 
-.whitefont{
-	color:white;
-}
-#border{
-	border-style: solid;
-	border-radius: 50px;
-	margin-left:5%;
-	margin:5%;
+form {
+  margin: 0 auto;
 }
 
-.footer {
-
-    height:24px; // Replace with the height your footer should be
-    width: 100%; // Don't change
-    background-image: none;
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-position: 0% 0%;
-    position: fixed;
-    bottom: 35px;
-	float:left;
-	
-}   
-
-.footer_contents {
-
-    height:24px; // Replace with the height your footer should be
-	float:right;
-    margin:auto;
-
-
-}
-.notification{
-	align: center;
-	width:450px;
-	height: 200px;
-}
-#btnchat{
-	width:150px;
-	height:60px;
+footer {
+  height: 24px; // Replace with the height your footer should be
+  width: 100%; // Don't change
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  bottom: 35px;
+  float: left;
 }
 
-.topnav {
-    background-color: #25211e;
-    overflow: hidden;
-	position: fixed;
+.notification {
+  align: center;
+  width: 450px;
+  height: 200px;
+}
+
+.chatBtn {
+  background-color: #25211e !important;
+  width: 150px;
+  height: 60px;
+}
+
+nav {
+  background-color: #25211e;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+nav a {
+  float: center;
+  color: #c1b497;
+  display: inline-block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 21px;
+  margin-top: 20px;
+}
+
+nav a:hover {
+  color: white;
+  background-color: #c1b497;
+}
+
+nav a.active {
+  background-color: ;
+  color: white;
+}
+
+.websiteName {
+  font-size: 37px;
+  color: #c1b497;
+  font-family: luxury;
+}
+
+.topSpacer {
+  margin-top: 10%;
+}
+
+table {
+  border: 2px solid;
+}
+
+.userForm {
+	width: 25%;
+}
+
+.btnSubmit {
 	width: 100%;
-}
-
-.topnav a {
-	float:center;
-	color:#c1b497;
-    display: inline-block;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 21px;
-	margin-top:20px;
-}
-
-
-.topnav a:hover {
-	color: white;
-    background-color: #c1b497;    
-}
-
-
-.topnav a.active {
-    background-color:;
-    color: white;
 }
