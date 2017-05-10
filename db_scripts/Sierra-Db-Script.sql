@@ -89,8 +89,13 @@ CREATE TABLE IF NOT EXISTS `Project-Sierra`.`User_Modul` (
   `zp1` DOUBLE NULL,
   `zp2` DOUBLE NULL,
   `mj` DOUBLE NULL,
+  `percentage_lb` INT NULL CHECK (percentage_lb > 1 AND percentage_lb <100),
+  `percentage_zp1` INT NULL CHECK (percentage_zp1 > 1 AND percentage_zp1 <100),
+  `percentage_zp2` INT NULL CHECK (percentage_zp2 > 1 AND percentage_zp2 <100),
+  `percentage_mj` INT NULL CHECK (percentage_mj > 1 AND percentage_mj <100),
   `fk_id_user` INT NULL,
   `fk_id_modul` INT NULL,
+ 
   INDEX `fk_id_user_idx` (`fk_id_user` ASC),
   INDEX `fk_id_modul_idx` (`fk_id_modul` ASC),
   CONSTRAINT `fk_id_user`
