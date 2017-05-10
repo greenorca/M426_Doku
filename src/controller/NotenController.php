@@ -1,6 +1,7 @@
 <?php
 
-require_once 'DbController.php';
+require_once '/controller/DbController.php';
+require_once '/model/Modul.php';
 
 /**
  * Class NotenController
@@ -10,7 +11,8 @@ class NotenController
 {
     private $userid;
     private $cnx;
-    private $resultArray = [];
+    private $markArray = [];
+    private $modulArray = [];
 
     /**
      * NotenController constructor.
@@ -18,7 +20,8 @@ class NotenController
      */
     function __construct()
     {
-        $this->cnx = new DbController();
+        private $dbcontroller = new DbController();
+        $this->cnx = $dbcontroller->getDbconn();
     }
 
     /**
@@ -36,7 +39,11 @@ class NotenController
      */
     function getMarks()
     {
-        $stmnt = $this->cnx->prepare('SELECT ');
+        $stmnt = $this->cnx->prepare('SELECT * FROM Modul');
+        $stmnt->execute();
+        while ($obj = $stmnt->fetch_object()){
+            array_push($this->modulArray, new Modul($obj->))
+        }
     }
 
 }
