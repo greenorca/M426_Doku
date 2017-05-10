@@ -9,7 +9,7 @@
 		Lots of Stuff will  be added here later.
 
 		Just a little prototype
-	
+
 	-->
 	<title>Neuer Benutzer registrieren</title>
 </head>

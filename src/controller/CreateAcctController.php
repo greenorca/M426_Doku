@@ -16,7 +16,8 @@
 		* Default constructor
 		*/
 		function __construct(){
-			$this->dbconn = new DbController();
+			$dbController = new DbController();
+			$this->dbconn = $dbController->getDbconn();
 		}
 
 		/**
@@ -39,8 +40,10 @@
 		function retreiveGroups(){
 			$groupNames = [];
 			$stmt = $this->dbconn->prepare("SELECT * FROM `Groups`");
-			while($row = $stmt->fetch_object()){
-				array_push($groupNames, $row->idGroups);
+			$stmt->execute();
+      $result = $stmt->get_result();
+      while($row = $result->fetch_assoc()){
+				array_push($groupNames, $row['Groupname']);
 			}
 			$stmt->close();
 
