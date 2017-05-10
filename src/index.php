@@ -1,5 +1,7 @@
 <html style="color:#e7e7e7">
-	<head>
+	<head onload="timeStart()">
+		<h1 id="time"></h1> <!--wird durch die Momentane Zeit ersetzt-->
+		<div id="pause"></div> <!--Hier wird die Pausen Message eingeblendet-->
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -13,6 +15,7 @@
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/bootstrap.css">
 		<script  src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		
 		
 		<!-- Navigationsleiste -->
 		<div class="topnav" id="myTopnav" align="center">
@@ -37,6 +40,7 @@
 		
 		
 		<!--JavaScript Start-->
+		<script src="js/time.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.js"></script>
