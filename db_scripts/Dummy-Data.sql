@@ -1,5 +1,5 @@
 use project-sierra;
-Insert into groups(Groupname) values ('Dotzenten');
+Insert into groups(Groupname) values ('Dozenten');
 Insert into groups(Groupname) values ('IFZ-626-016');
 
 Insert into user(`name`, firstname, `password`, email, fk_id_group) values ('Walker', 'Paul', 'fastnfurious', 1);
