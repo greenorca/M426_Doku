@@ -1,5 +1,33 @@
 <html style="color:#e7e7e7">
-	<head>
+<?php
+	
+   	require_once 'controller/CreateAcctController.php';
+    	$controller = new CreateAcctController();
+
+        /**
+        *
+        * TODO: Check if user is an admin and serve the page differently to non admins
+        *
+        */
+        if (isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['passwd']) && isset($_POST['group'])) {
+            $name = $controller->stripHtmlTags($_POST['name']);
+            $firstname = $controller->stripHtmlTags($_POST['firstname']);
+            $email = $controller->stripHtmlTags($_POST['email']);
+            $password = crypt($_POST['passwd'], $controller->generateSalt());
+            if (isset($_POST['isAdmin']) && $_POST['isAdmin'] == "true") {
+                $isAdmin = true;
+            } else {
+                $isAdmin = false;
+            }
+            $groupName = $controller->stripHtmlTags($_POST['group']);
+            if ($controller->createUser($name, $firstname, $email, $password, $isAdmin, $groupName)) {
+                header("Location: admin.php?success");
+            } else {
+                header("Location: admin.php?error");
+            }
+        }
+    ?>
+<head>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -32,19 +60,28 @@
 		<div id="border">
 			<center>
 			<h1 class="whitefont">Benutzer erfassen</h1>
-			<form>
-				<b>Vorname:</b><br>
-				<input type="text" style="width:300px" name="vorname" placeholder="Max"><br>
-				<b>Nachname:</b><br>
-				<input type="text" style="width:300px" name="nachname" placeholder="Muster"></br>
-				<b>E-Mail:</b><br>
-				<input type="mail" style="width:300px" name="email" placeholder="Max.Muster@example.com"><br>
-				<b>Passwort:</b><br>
-				<input type="password" style="width:300px" name="passwort" placeholder="*******"><br>
-				<b>Gruppe:</b><br>
-				<input type="text" style="width:300px" name="gruppe" placeholder="Klasse"><br>
-				<input type="submit" class="btn btn-default" value="Erfassen" />
-			</form>
+				<form action="?" method="POST">
+					<label for="#name">Name</label>
+					<input name="name" id="name" type="text" placeholder="Name">
+					<label for="#firstname">Vorname</label>
+					<input name="firstname" id="firstname" type="text" placeholder="Vorname">
+					<label for="#email">E-Mail</label>
+					<input name="email" id="email" type="email" placeholder="E-Mail">
+					<label for="#passwd">Passwort</label>
+					<input name="passwd" id="passwd" type="password" placeholder="Passwort">
+					<label for="#group">Gruppe</label>
+					<select name="group" id="group">
+						<?php
+					$groups = $controller->retreiveGroups();
+					foreach ($groups as $group) {
+					    echo "<option value='".$group."'>".$group."</option>";
+					}
+				    ?>
+					</select>
+					<label for="#isAdmin">Ist der Nutzer Admin?</label>
+					<input type="checkbox" name="isAdmin" id="isAdmin" value="true">
+					<input type="submit" value="Benutzer erstellen">
+				</form>	
 			</center>
 			</br>
 		</div>

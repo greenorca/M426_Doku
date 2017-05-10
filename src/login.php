@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
-<head>
-	<!--
-		Lots of Stuff will  be added here later.
-
-		Just a little prototype
-
-	-->
-	<title>Login</title>
-</head>
-<body>
-	<?php
-    if (isset($_POST['email']) && isset($_POST['password'])) {
-        require_once 'controller/LoginController.php';
-        $controller = new LoginController();
-        $email  = $controller->stripHtmlTags($_POST['email']);
-        $password = $_POST['password'];
-
-        $controller->setEmail($email);
-        $controller->setPassword($password);
-				echo $controller->checkUserLogin();
-        if ($controller->checkUserLogin()) {
-            header("Location: index.php");
-        } else {
-            header("Location: login.php?error=incorrectinfo");
-        }
-    }
-    ?>
-	<form action="?" method="POST">
-		<label for="#email">E-Mail</label>
-		<input name="email" id="email" type="email" placeholder="E-Mail">
-		<label for="#password">Passwort</label>
-		<input name="password" id="password" type="password" placeholder="Passwort">
-		<input type="submit" value="Einloggen">
-	</form>
-</body>
-</html>
-=======
 <html style="color:#e7e7e7">
 	<head>
 		<!-- Latest compiled and minified CSS -->
@@ -73,13 +33,37 @@
 			<div class="notification" id="pause"></div>
 		</div>
 		
-		
+			<?php
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        require_once 'controller/LoginController.php';
+        $controller = new LoginController();
+        $email  = $controller->stripHtmlTags($_POST['email']);
+        $password = $_POST['password'];
+
+        $controller->setEmail($email);
+        $controller->setPassword($password);
+				echo $controller->checkUserLogin();
+        if ($controller->checkUserLogin()) {
+            header("Location: index.php");
+        } else {
+            header("Location: login.php?error=incorrectinfo");
+        }
+    }
+    ?>
+	<div class='container'>
+		<form action="?" method="POST">
+			<label for="#email">E-Mail</label>
+			<input name="email" id="email" type="email" placeholder="E-Mail">
+			<label for="#password">Passwort</label>
+			<input name="password" id="password" type="password" placeholder="Passwort">
+			<input type="submit" value="Einloggen">
+		</form>
+	</div>
 		
 		
 		<!--JavaScript Start-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="view.template/js/bootstrap.js"></script>
 		<!--JavaScript Ende-->
 	</body>
 	
@@ -88,4 +72,4 @@
     <div class="footer_contents"><button id="btnchat" type="button" class="btn btn-primary">Chat</button></div>
 
 </html>
->>>>>>> sprint-01-design
+
