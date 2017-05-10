@@ -14,20 +14,29 @@ class NotenController
 
     /**
      * NotenController constructor.
-     * @param $userid
      * Sets the classvariable userid and cnx.
      */
-    function __construct($userid)
+    function __construct()
     {
-        $this->userid = $userid;
         $this->cnx = new DbController();
+    }
+
+    /**
+     * Sets the classvariable if the sessionvar userid is set and an integer
+     */
+    function setUserid()
+    {
+        if (isset($_SESSION['userid']) && is_int($_SESSION['userid'])) {
+            $this->userid = $_SESSION['userid'];
+        }
     }
 
     /**
      * This function will fetch all Marks for the current user.
      */
-    function getMarks(){
-
+    function getMarks()
+    {
+        $stmnt = $this->cnx->prepare('SELECT ');
     }
 
 }
