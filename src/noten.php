@@ -18,16 +18,16 @@
 		<div class="topnav" id="myTopnav" align="center">
 			<h1 style="color:#c1b497;font-family:luxury;">S I E R R A</h1>
 			<a href="index.php">HOME</a>
-			<a href="noten.php">NOTEN</a>
+			<a class='active' href="noten.php">NOTEN</a>
 			<a href="todolist.php"> TO-DO LIST </a>
-			<a class='active' href="login.php"> LOGIN </a>
+			<a href="login.php"> LOGIN </a>
 			<a href="admin.php"> ADMIN </a>
 		</div>
 	</head>
 	<body style="background-color:#c4c4c4">
 		<div class="container">
 			<div style="color:black">
-				<h1>Login</h1>
+				<h1>Noten</h1>
 			</div>
 			<div style="margin: 100px"></div>
 			<div class="notification" id="pause"></div>

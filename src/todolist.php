@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>
-			Login
+			To-Do List
 		</title>
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/bootstrap.css">
@@ -19,15 +19,15 @@
 			<h1 style="color:#c1b497;font-family:luxury;">S I E R R A</h1>
 			<a href="index.php">HOME</a>
 			<a href="noten.php">NOTEN</a>
-			<a href="todolist.php"> TO-DO LIST </a>
-			<a class='active' href="login.php"> LOGIN </a>
+			<a class='active' href="todolist.php"> TO-DO LIST </a>
+			<a href="login.php"> LOGIN </a>
 			<a href="admin.php"> ADMIN </a>
 		</div>
 	</head>
 	<body style="background-color:#c4c4c4">
 		<div class="container">
 			<div style="color:black">
-				<h1>Login</h1>
+				<h1>To-Do List</h1>
 			</div>
 			<div style="margin: 100px"></div>
 			<div class="notification" id="pause"></div>

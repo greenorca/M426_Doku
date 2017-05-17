@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>
-			Login
+			Admin
 		</title>
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/bootstrap.css">
@@ -20,17 +20,33 @@
 			<a href="index.php">HOME</a>
 			<a href="noten.php">NOTEN</a>
 			<a href="todolist.php"> TO-DO LIST </a>
-			<a class='active' href="login.php"> LOGIN </a>
-			<a href="admin.php"> ADMIN </a>
+			<a href="login.php"> LOGIN </a>
+			<a class="active" href="admin.php"> ADMIN </a>
 		</div>
 	</head>
 	<body style="background-color:#c4c4c4">
 		<div class="container">
-			<div style="color:black">
-				<h1>Login</h1>
-			</div>
 			<div style="margin: 100px"></div>
 			<div class="notification" id="pause"></div>
+		</div>
+		<div id="border">
+			<center>
+			<h1 class="whitefont">Benutzer erfassen</h1>
+			<form>
+				<b>Vorname:</b><br>
+				<input type="text" style="width:300px" name="vorname" placeholder="Max"><br>
+				<b>Nachname:</b><br>
+				<input type="text" style="width:300px" name="nachname" placeholder="Muster"></br>
+				<b>E-Mail:</b><br>
+				<input type="mail" style="width:300px" name="email" placeholder="Max.Muster@example.com"><br>
+				<b>Passwort:</b><br>
+				<input type="password" style="width:300px" name="passwort" placeholder="*******"><br>
+				<b>Gruppe:</b><br>
+				<input type="text" style="width:300px" name="gruppe" placeholder="Klasse"><br>
+				<input type="submit" class="btn btn-default" value="Erfassen" />
+			</form>
+			</center>
+			</br>
 		</div>
 		
 		
