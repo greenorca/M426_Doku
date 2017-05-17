@@ -1,7 +1,7 @@
 <?php
 
-require_once '/controller/DbController.php';
-require_once '/model/Modul.php';
+require_once './controller/DbController.php';
+require_once './model/Modul.php';
 
 /**
  * Class NotenController
@@ -20,7 +20,7 @@ class NotenController
      */
     function __construct()
     {
-        private $dbcontroller = new DbController();
+        $dbcontroller = new DbController();
         $this->cnx = $dbcontroller->getDbconn();
     }
 
@@ -41,9 +41,10 @@ class NotenController
     {
         $stmnt = $this->cnx->prepare('SELECT * FROM Modul');
         $stmnt->execute();
-        while ($obj = $stmnt->fetch_object()){
-            array_push($this->modulArray, new Modul($obj->))
+        while ($obj = $stmnt->fetch_object()) {
+            array_push($this->modulArray, new Modul($obj->idModul, $obj->modulname, $obj->modulnummer));
         }
+        return $this->modulArray;
     }
 
 }
