@@ -18,15 +18,19 @@ ini_set('display_errors', 1);
 <body>
 	<?php
 		if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['passwd']) && isset($_POST['group'])){
-			/*$controller->setUsername($controller->stripHtmlTags($_POST['name']));
-			$controller->setFirstname($controller->stripHtmlTags($_POST['firstname']));
-			$controller->setEmail($controller->stripHtmlTags($_POST['email']));
-			$controller->setPassword(crypt($_POST['password'],$controller->generateSalt()));
-			$controller->setGroup($controller->stripHtmlTags($_POST['group']));
-			$controller->saveUser();*/
-			var_dump($_POST['group']);
+			$name = $controller->stripHtmlTags($_POST['name']);
+			$firstname = $controller->stripHtmlTags($_POST['firstname']);
+			$email = $controller->stripHtmlTags($_POST['email']);
+			$password = crypt($_POST['passwd'],$controller->generateSalt());
+			if(isset($_POST['isAdmin']) && $_POST['isAdmin'] == "true"){
+				$isAdmin = true;
+			} else {
+				$isAdmin = false;
+			}
+			$groupName = $controller->stripHtmlTags($_POST['group']);
+			$controller->createUser($name, $firstname, $email, $password, $isAdmin, $groupName);
 
-			header("Location: createacct.php");
+			//header("Location: createacct.php");
 		}
 	?>
 	<form action="?" method="POST">
@@ -47,6 +51,8 @@ ini_set('display_errors', 1);
 				}
 			?>
 		</select>
+		<label for="#isAdmin">Ist der Nutzer Admin?</label>
+		<input type="checkbox" name="isAdmin" id="isAdmin" value="true">
 		<input type="submit" value="Benutzer erstellen">
 	</form>
 </body>
