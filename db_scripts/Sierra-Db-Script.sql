@@ -76,8 +76,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Project-Sierra`.`modul` (
   `modul_id` INT NOT NULL AUTO_INCREMENT,
-  `modullast_name` VARCHAR(45) NULL,
-  `modulnummer` VARCHAR(4) NULL,
+  `modul_name` VARCHAR(45) NULL,
+  `modul_number` VARCHAR(4) NULL,
   PRIMARY KEY (`modul_id`))
 ENGINE = InnoDB;
 
