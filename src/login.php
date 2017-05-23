@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html>Messege
 <html>
 <head>
 	<!--
 		Lots of Stuff will  be added here later.
 
 		Just a little prototype
-	
+
 	-->
 	<title>Login</title>
 </head>
