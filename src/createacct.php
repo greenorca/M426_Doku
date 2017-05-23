@@ -15,6 +15,11 @@
 </head>
 <body>
 	<?php
+        /**
+        *
+        * TODO: Check if user is an admin and serve the page differently to non admins
+        *
+        */
         if (isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['passwd']) && isset($_POST['group'])) {
             $name = $controller->stripHtmlTags($_POST['name']);
             $firstname = $controller->stripHtmlTags($_POST['firstname']);
@@ -26,9 +31,11 @@
                 $isAdmin = false;
             }
             $groupName = $controller->stripHtmlTags($_POST['group']);
-            $controller->createUser($name, $firstname, $email, $password, $isAdmin, $groupName);
-
-            header("Location: createacct.php");
+            if ($controller->createUser($name, $firstname, $email, $password, $isAdmin, $groupName)) {
+                header("Location: createacct.php?success");
+            } else {
+                header("Location: createacct.php?error");
+            }
         }
     ?>
 	<form action="?" method="POST">

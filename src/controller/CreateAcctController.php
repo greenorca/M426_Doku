@@ -59,16 +59,6 @@
         }
 
         /**
-        * This function is used to strip html tags and contents
-        * @param $stringToClean -> String to remove tags from
-        */
-        public function stripHtmlTags($stringToClean)
-        {
-            $regexToRemoveTagsAndContent = '/<[^>]*>[^<]*<[^>]*>/';
-            return strip_tags(preg_replace($regexToRemoveTagsAndContent, '', $stringToClean));
-        }
-
-        /**
         * Getter function that gets group ID by groupName
         * @param $groupName -> Group name in form of a string
         * @return -> The group ID in form of an integer
@@ -88,32 +78,50 @@
         /**
         * This function is used to create a new user object and then save it to the DB
         * @param $lastName -> Last name of the user in form of a string
-      * @param $firstName -> First name of the user in form of a string
-      * @param $email -> Email of the user in form of a string
-      * @param $password -> Password of the user in form of a blowfish crypted string
-      * @param $groupName -> The name of the user's group in form of a string
+        * @param $firstName -> First name of the user in form of a string
+        * @param $email -> Email of the user in form of a string
+        * @param $password -> Password of the user in form of a blowfish crypted string
+        * @param $groupName -> The name of the user's group in form of a string
         */
         public function createUser($lastName, $firstName, $email, $password, $isAdmin, $groupName)
         {
             if (isset($this->dbconn) && isset($lastName) && isset($firstName) && isset($email) && isset($password) && isset($groupName)) {
-                $groupId = $this->getGroupIdByName($groupName);
-                $newUser = new User($lastName, $firstName, $email, $password, $isAdmin, $groupId);
-                $newUserLastName =$newUser->getLastName();
-                $newUserFirstName =$newUser->getFirstName();
-                $newUserPassword =$newUser->getPassword();
-                $newUserEmail =$newUser->getEmail();
-                $newUserIsAdmin =$newUser->isAdmin();
-                $newUserGroupId =$newUser->getGroupId();
-
-                $stmt = $this->dbconn->prepare("INSERT INTO `user` (`last_name`,`first_name`,`password`,`email`,`is_admin`,`fk_group_id`) VALUES (?,?,?,?,?,?)");
-                $stmt->bind_param('ssssii', $newUserLastName, $newUserFirstName, $newUserPassword, $newUserEmail, $newUserIsAdmin, $newUserGroupId);
+                $stmt = $this->dbconn->prepare("SELECT * FROM `user` WHERE `email`=?");
+                $stmt->bind_param('s', $email);
                 $stmt->execute();
-                $stmt->close();
+                $result = $stmt->get_result();
+                if ($result == null) {
+                    $groupId = $this->getGroupIdByName($groupName);
+                    $newUser = new User($lastName, $firstName, $email, $password, $isAdmin, $groupId);
 
+                    $newUserLastName = $newUser->getLastName();
+                    $newUserFirstName = $newUser->getFirstName();
+                    $newUserPassword = $newUser->getPassword();
+                    $newUserEmail = $newUser->getEmail();
+                    $newUserIsAdmin = $newUser->isAdmin();
+                    $newUserGroupId = $newUser->getGroupId();
 
-                return true;
+                    $stmt = $this->dbconn->prepare("INSERT INTO `user` (`last_name`,`first_name`,`password`,`email`,`is_admin`,`fk_group_id`) VALUES (?,?,?,?,?,?)");
+                    $stmt->bind_param('ssssii', $newUserLastName, $newUserFirstName, $newUserPassword, $newUserEmail, $newUserIsAdmin, $newUserGroupId);
+                    $stmt->execute();
+                    $stmt->close();
+
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
+        }
+
+        /**
+        * This function is used to strip html tags and contents
+        * @param $stringToClean -> String to remove tags from
+        */
+        public function stripHtmlTags($stringToClean)
+        {
+            $regexToRemoveTagsAndContent = '/<[^>]*>[^<]*<[^>]*>/';
+            return strip_tags(preg_replace($regexToRemoveTagsAndContent, '', $stringToClean));
         }
     }
