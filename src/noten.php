@@ -5,26 +5,32 @@ error_reporting(E_ALL);
 
 session_start();
 
-require_once "controller/NotenController.php";
+require_once "controller/MarksController.php";
 
-$notencontroller = new NotenController();
+$markcontroller = new MarksController();
 
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<?php
-foreach ($notencontroller->getMarks() as $mark) {
-    ?>
-    <table border="2px solid">
+<table border="2px solid">
+    <?php
+    foreach ($markcontroller->getMarks() as $mark) {
+        ?>
+
+        <tr>
+            <td><?php //echo $modulId->getModuleNumber() ?></td>
+            <td><?php //echo $modulId->getModuleName() ?></td>
+        </tr>
         <tr>
             <td><?php echo $mark->getDescription(); ?></td>
             <td><?php echo $mark->getMark(); ?></td>
         </tr>
-    </table>
-    <?php
-}
-?>
+
+        <?php
+    }
+    ?>
+</table>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

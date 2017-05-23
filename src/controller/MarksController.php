@@ -1,7 +1,8 @@
 <?php
 
 require_once './controller/DbController.php';
-require_once './model/Note.php';
+require_once './model/Mark.php';
+require_once './model/Modul.php';
 
 
 ini_set('display_errors', 1);
@@ -9,18 +10,17 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 /**
- * Class NotenController
+ * Class MarksController
  * This class serves the businesslogic for the marks
  */
-class NotenController
+class MarksController
 {
     private $userid;
     private $cnx;
-    private $modulNumber = [];
     private $markArray = [];
 
     /**
-     * NotenController constructor.
+     * MarksController constructor.
      * Sets the classvariable userid and cnx.
      */
     function __construct()
@@ -53,13 +53,23 @@ class NotenController
         $stmnt->execute();
         $result = $stmnt->get_result();
         while ($obj = $result->fetch_object()) {
-            array_push($this->markArray, new Note($obj->lb, $obj->percentage_lb, 'LB', $obj->fk_id_modul));
-            array_push($this->markArray, new Note($obj->zp1, $obj->percentage_zp1, 'ZP1', $obj->fk_id_modul));
-            array_push($this->markArray, new Note($obj->zp2, $obj->percentage_zp2, 'ZP2', $obj->fk_id_modul));
-            array_push($this->markArray, new Note($obj->mj, $obj->percentage_mj, 'MJ', $obj->fk_id_modul));
+            array_push($this->markArray, new Mark($obj->lb, $obj->percentage_lb, 'LB', $obj->fk_id_modul));
+            array_push($this->markArray, new Mark($obj->zp1, $obj->percentage_zp1, 'ZP1', $obj->fk_id_modul));
+            array_push($this->markArray, new Mark($obj->zp2, $obj->percentage_zp2, 'ZP2', $obj->fk_id_modul));
+            array_push($this->markArray, new Mark($obj->mj, $obj->percentage_mj, 'MJ', $obj->fk_id_modul));
         }
         return $this->markArray;
 
+    }
+
+    function getModulDetails($fk_id_modul){
+        $stmnt = $this->cnx->prepare('SELECT * FROM Modul WHERE idModul = ?');
+        $stmnt->bind_param("s", $fk_id_modul);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        while($obj = $result->fetch_object()){
+            return new Modul($obj->idModul, $obj->modulname, $obj->modulnummer);
+        }
     }
 
 }

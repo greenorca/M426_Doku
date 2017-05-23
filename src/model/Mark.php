@@ -1,6 +1,6 @@
 <?php
 
-class Note
+class Mark
 {
     private $mark;
     private $percentage;
@@ -8,7 +8,7 @@ class Note
     private $modulId;
 
     /**
-     * Note constructor.
+     * Mark constructor.
      * @param $mark
      * @param $percentage
      * @param $description
