@@ -38,6 +38,7 @@ class NotenController
         if (isset($_SESSION['userid']) && is_int($_SESSION['userid'])) {
             $this->userid = $_SESSION['userid'];
         }else{
+            //Manual allocation for debugging.
             $this->userid = 2;
         }
     }
