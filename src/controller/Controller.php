@@ -1,3 +1,2 @@
 <?php
-	require_once "controller/TodoController.php";
-?>
+    require_once "controller/TodoController.php";

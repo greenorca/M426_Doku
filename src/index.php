@@ -1,5 +1,5 @@
 <?php
-	require_once "controller/Controller.php";
+    require_once "controller/Controller.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,6 @@
 <nav>
 	<?php require_once "view.template/nav.php"; ?>
 </nav>
-
 	<?php require_once "view.template/script.php";?>
 </body>
 </html>

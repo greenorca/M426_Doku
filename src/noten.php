@@ -17,10 +17,10 @@ $markcontroller = new MarksController();
     <?php
     foreach ($markcontroller->getMarks() as $mark) {
         ?>
-
+            
         <tr>
-            <td><?php //echo $modulId->getModuleNumber() ?></td>
-            <td><?php //echo $modulId->getModuleName() ?></td>
+            <td><?php echo $modulId->getModuleNumber() ?></td>
+            <td><?php echo $modulId->getModuleName() ?></td>
         </tr>
         <tr>
             <td><?php echo $mark->getDescription(); ?></td>
