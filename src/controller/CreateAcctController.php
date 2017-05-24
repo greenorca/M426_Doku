@@ -94,7 +94,7 @@ ini_set('display_errors', '1');
                 $result = $stmt->get_result();
 								$returnedRows = 0;
                 while($row = $result->fetch_assoc()){
-									$returnedRows = $row['num_rows'];
+									$returnedRows++;
 								}
                 if ($returnedRows == 0) {
                     $groupId = $this->getGroupIdByName($groupName);

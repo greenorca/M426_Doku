@@ -34,9 +34,9 @@ ini_set('display_errors', '1');
             }
             $groupName = $controller->stripHtmlTags($_POST['group']);
             if ($controller->createUser($name, $firstname, $email, $password, $isAdmin, $groupName)) {
-                //header("Location: createacct.php?success");
+                header("Location: createacct.php?success");
             } else {
-                //header("Location: createacct.php?error");
+                header("Location: createacct.php?error");
             }
         }
     ?>
