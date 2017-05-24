@@ -15,13 +15,25 @@ $markcontroller = new MarksController();
 
 <table border="2px solid">
     <?php
+    $counter = 1;
     foreach ($markcontroller->getMarks() as $mark) {
+        $modulId = $markcontroller->getModulDetails($mark->getModulId());
+        if($counter == 1){
+            ?>
+            <tr>
+                <td><strong><?php echo $modulId->getModuleNumber() ?></strong></td>
+                <td><strong><?php echo $modulId->getModuleName() ?></strong></td>
+            </tr>
+            <?php
+            $counter++;
+        }else{
+            $counter++;
+        }
+
+        if($counter == 5){
+            $counter =1;
+        }
         ?>
-            
-        <tr>
-            <td><?php echo $modulId->getModuleNumber() ?></td>
-            <td><?php echo $modulId->getModuleName() ?></td>
-        </tr>
         <tr>
             <td><?php echo $mark->getDescription(); ?></td>
             <td><?php echo $mark->getMark(); ?></td>

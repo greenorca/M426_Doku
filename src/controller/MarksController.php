@@ -36,10 +36,10 @@ class MarksController
     function setUserid()
     {
         if (isset($_SESSION['userid']) && is_int($_SESSION['userid'])) {
-            $this->userid = $_SESSION['userid'];
+            $this->userid = $_SESSION['userId'];
         }else{
             //Manual allocation for debugging.
-            $this->userid = 2;
+            //$this->userid = 2;
         }
     }
 
@@ -48,27 +48,27 @@ class MarksController
      */
     function getMarks()
     {
-        $stmnt = $this->cnx->prepare('SELECT * FROM User_Modul WHERE fk_id_user = ?');
+        $stmnt = $this->cnx->prepare('SELECT * FROM user_modul WHERE fk_user_id = ?');
         $stmnt->bind_param("s", $this->userid);
         $stmnt->execute();
         $result = $stmnt->get_result();
         while ($obj = $result->fetch_object()) {
-            array_push($this->markArray, new Mark($obj->lb, $obj->percentage_lb, 'LB', $obj->fk_id_modul));
-            array_push($this->markArray, new Mark($obj->zp1, $obj->percentage_zp1, 'ZP1', $obj->fk_id_modul));
-            array_push($this->markArray, new Mark($obj->zp2, $obj->percentage_zp2, 'ZP2', $obj->fk_id_modul));
-            array_push($this->markArray, new Mark($obj->mj, $obj->percentage_mj, 'MJ', $obj->fk_id_modul));
+            array_push($this->markArray, new Mark($obj->lb, $obj->percentage_lb, 'LB', $obj->fk_modul_id));
+            array_push($this->markArray, new Mark($obj->zp1, $obj->percentage_zp1, 'ZP1', $obj->fk_modul_id));
+            array_push($this->markArray, new Mark($obj->zp2, $obj->percentage_zp2, 'ZP2', $obj->fk_modul_id));
+            array_push($this->markArray, new Mark($obj->mj, $obj->percentage_mj, 'MJ', $obj->fk_modul_id));
         }
         return $this->markArray;
 
     }
 
     function getModulDetails($fk_id_modul){
-        $stmnt = $this->cnx->prepare('SELECT * FROM Modul WHERE idModul = ?');
+        $stmnt = $this->cnx->prepare('SELECT * FROM modul WHERE modul_id = ?');
         $stmnt->bind_param("s", $fk_id_modul);
         $stmnt->execute();
         $result = $stmnt->get_result();
         while($obj = $result->fetch_object()){
-            return new Modul($obj->idModul, $obj->modulname, $obj->modulnummer);
+            return new Modul($obj->modul_id, $obj->modul_name, $obj->modul_number);
         }
     }
 

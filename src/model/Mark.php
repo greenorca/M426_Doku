@@ -19,7 +19,7 @@ class Mark
         $this->mark = $mark;
         $this->percentage = $percentage;
         $this->description = $description;
-        $this->modul = $modulId;
+        $this->modulId = $modulId;
     }
 
     /**
