@@ -35,7 +35,7 @@ class MarksController
      */
     function setUserid()
     {
-        if (isset($_SESSION['userid']) && is_int($_SESSION['userid'])) {
+        if (isset($_SESSION['userId']) && is_int($_SESSION['userId'])) {
             $this->userid = $_SESSION['userId'];
         }else{
             //Manual allocation for debugging.

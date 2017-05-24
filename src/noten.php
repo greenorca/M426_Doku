@@ -16,6 +16,7 @@ $markcontroller = new MarksController();
 <table border="2px solid">
     <?php
     $counter = 1;
+    $averageMark = 0;
     foreach ($markcontroller->getMarks() as $mark) {
         $modulId = $markcontroller->getModulDetails($mark->getModulId());
         if($counter == 1){
@@ -29,15 +30,27 @@ $markcontroller = new MarksController();
         }else{
             $counter++;
         }
-
-        if($counter == 5){
-            $counter =1;
-        }
         ?>
         <tr>
             <td><?php echo $mark->getDescription(); ?></td>
             <td><?php echo $mark->getMark(); ?></td>
         </tr>
+        <?php
+        $averageMark+= $mark->getMark()*($mark->getPercentage()/100);
+        if($counter == 5){
+            $counter =1;
+
+            ?>
+            <tr>
+                <td>Endmark: </td>
+                <td><?php echo $averageMark; ?></td>
+            </tr>
+            <?php
+
+            $averageMark = 0;
+
+        }
+        ?>
 
         <?php
     }
