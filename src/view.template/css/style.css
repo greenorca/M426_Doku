@@ -1,0 +1,86 @@
+@font-face {
+	font-family: 'luxury';
+	src: url('./ufontscomepisodei.eot');
+	src: local('ufontscomepisodei'), url('./ufontscomepisodei.woff') format('woff'), url('./ufontscomepisodei.ttf') format('truetype');
+}
+body{
+	color:#c4c4c4;
+}
+footer{
+	
+}
+form { 
+	margin: 0 auto; 
+}
+
+.whitefont{
+	color:white;
+}
+#border{
+	border-style: solid;
+	border-radius: 50px;
+	margin-left:5%;
+	margin:5%;
+}
+
+.footer {
+
+    height:24px; // Replace with the height your footer should be
+    width: 100%; // Don't change
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 35px;
+	float:left;
+	
+}   
+
+.footer_contents {
+
+    height:24px; // Replace with the height your footer should be
+	float:right;
+    margin:auto;
+
+
+}
+.notification{
+	align: center;
+	width:450px;
+	height: 200px;
+}
+#btnchat{
+	width:150px;
+	height:60px;
+}
+
+.topnav {
+    background-color: #25211e;
+    overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
+
+.topnav a {
+	float:center;
+	color:#c1b497;
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 21px;
+	margin-top:20px;
+}
+
+
+.topnav a:hover {
+	color: white;
+    background-color: #c1b497;    
+}
+
+
+.topnav a.active {
+    background-color:;
+    color: white;
+}
