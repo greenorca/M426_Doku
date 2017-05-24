@@ -15,6 +15,8 @@
 </head>
 <body>
 	<?php
+	error_reporting(E_ALL);
+ini_set('display_errors', '1');
         /**
         *
         * TODO: Check if user is an admin and serve the page differently to non admins
@@ -32,9 +34,9 @@
             }
             $groupName = $controller->stripHtmlTags($_POST['group']);
             if ($controller->createUser($name, $firstname, $email, $password, $isAdmin, $groupName)) {
-                header("Location: createacct.php?success");
+                //header("Location: createacct.php?success");
             } else {
-                header("Location: createacct.php?error");
+                //header("Location: createacct.php?error");
             }
         }
     ?>

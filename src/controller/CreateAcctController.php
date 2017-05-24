@@ -1,4 +1,6 @@
 <?php
+	error_reporting(E_ALL);
+ini_set('display_errors', '1');
     // Controller imports
     require_once "DbController.php";
     // Model Imports
@@ -90,7 +92,11 @@
                 $stmt->bind_param('s', $email);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                if ($result == null) {
+								$returnedRows = 0;
+                while($row = $result->fetch_assoc()){
+									$returnedRows = $row['num_rows'];
+								}
+                if ($returnedRows == 0) {
                     $groupId = $this->getGroupIdByName($groupName);
                     $newUser = new User($lastName, $firstName, $email, $password, $isAdmin, $groupId);
 
