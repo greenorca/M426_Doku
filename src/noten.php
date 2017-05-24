@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -9,7 +8,6 @@ require_once "controller/NotenController.php";
 $notencontroller = new NotenController();
 
 echo $notencontroller->getMarks();
-=======
 <html style="color:#e7e7e7">
 	<head>
 		<!-- Latest compiled and minified CSS -->
@@ -60,4 +58,3 @@ echo $notencontroller->getMarks();
     <div class="footer_contents"><button id="btnchat" type="button" class="btn btn-primary">Chat</button></div>
 
 </html>
->>>>>>> 40156c127e261d86117187d2a03a97b3165ed10a
