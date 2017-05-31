@@ -42,6 +42,24 @@ nav {
   text-align: center;
 }
 
+#time {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 25px;
+  z-index: 999;
+  color: #c1b497;
+}
+
+#pause {
+  position: absolute;
+  top: 35px;
+  right: 5px;
+  font-size: 30px;
+  color: #5cb85c;
+  z-index: 999;
+}
+
 nav a {
   float: center;
   color: #c1b497;
@@ -78,9 +96,9 @@ table {
 }
 
 .userForm {
-	width: 25%;
+  width: 25%;
 }
 
 .btnSubmit {
-	width: 100%;
+  width: 100%;
 }

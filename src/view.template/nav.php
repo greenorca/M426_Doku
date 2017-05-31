@@ -1,6 +1,9 @@
 <!-- Navigationsleiste -->
 <nav>
   <div class="container-fluid">
+    <p id="pause">
+    </p>
+    <p id="time"></p>
     <div class="row">
       <span class="websiteName">S I E R R A</span>
     </div>
